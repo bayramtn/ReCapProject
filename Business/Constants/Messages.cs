@@ -13,6 +13,7 @@ namespace Business.Constants
         public static string NameInvalid = "Isim geçersiz";
         public static string Listed = "Listelendi";
         public static string MaintenanceTime = "Bakim zamani";
+        public static string CarOutside = "Araba baska musteride";
 
 
 
