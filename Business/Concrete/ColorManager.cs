@@ -1,4 +1,5 @@
-﻿using Business.Constants;
+﻿using Business.Abstract;
+using Business.Constants;
 using Core.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class ColorManager : IService<Color>
+    public class ColorManager : IColorService
     {
         IColorDal _colorDal;
 

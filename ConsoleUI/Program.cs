@@ -1,5 +1,6 @@
 ﻿using Business.Concrete;
 using Business.Constants;
+using Core.DataAccess;
 using Core.Utilities.Results;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
@@ -13,17 +14,19 @@ namespace ConsoleUI
 
         static void Main(string[] args)
         {
-            //10.gunOdev4
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            var result = rentalManager.Add(new Rental { CarId = 5,CustomerId=2,RentDate=DateTime.Today });
-            if (result.Success==true)
+            //RentalManagerTest();
+
+            UserManager userManager = new UserManager(new EfUserDal());
+
+            foreach (var user in userManager.GetAll().Data)
             {
-                Console.WriteLine(result.Message);
+                Console.WriteLine(user.FirstName+","+user.LastName);
             }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
+
+            
+            
+
+            
 
 
 
@@ -64,6 +67,40 @@ namespace ConsoleUI
 
 
             Console.ReadLine();
+        }
+
+        private static void RentalManagerTest()
+        {
+            //10.gunOdev4
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+            var result = rentalManager.Add(new Rental()
+            {
+                CarId = 1,
+                CustomerId = 2,
+                RentDate = new DateTime(2021, 3, 1)
+            });
+
+
+            if (result.Success == true)
+            {
+                Console.WriteLine(result.Message);
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+
+
+            rentalManager.Update(new Rental
+            {
+                Id = 9,
+                CarId = 1,
+                CustomerId = 2,
+                RentDate = new DateTime(2021, 3, 1),
+                ReturnDate = new DateTime(2021, 3, 5)
+            });
         }
 
         private static void ColorManagerTest()
