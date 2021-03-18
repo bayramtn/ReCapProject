@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class UserManager : IService<User>
+    public class UserManager : IUserService
     {
         IUserDal _userDal;
 
@@ -22,12 +22,15 @@ namespace Business.Concrete
 
         public IResult Add(User entity)
         {
-            throw new NotImplementedException();
+            _userDal.Add(entity);
+            return new SuccessResult(Messages.Add);
+
         }
 
         public IResult Delete(User entity)
         {
-            throw new NotImplementedException();
+            _userDal.Delete(entity);
+            return new SuccessResult(Messages.Delete);
         }
 
         public IDataResult<List<User>> GetAll()
@@ -37,12 +40,13 @@ namespace Business.Concrete
 
         public IDataResult<User> GetById(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == id), Messages.Listed);
         }
 
         public IResult Update(User entity)
         {
-            throw new NotImplementedException();
+            _userDal.Update(entity);
+            return new SuccessResult(Messages.Update);
         }
     }
 }

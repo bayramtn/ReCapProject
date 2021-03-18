@@ -2,7 +2,7 @@
 using Entities.Concrete;
 namespace Business.Abstract
 {
-    interface IUserService:IService<User>
+    public interface IUserService:IService<User>
     {
     }
 }
